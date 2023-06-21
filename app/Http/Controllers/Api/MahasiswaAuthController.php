@@ -113,7 +113,7 @@ class MahasiswaAuthController extends Controller
         //     'access_token' => $token,
         //     'token_type' => 'Bearer'
         // ]);
-        
+
         $user = Mahasiswa::where('email', $request->email)->first();
 
         if ($request->email != $user->email) {
