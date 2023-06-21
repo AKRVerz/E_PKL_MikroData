@@ -99,21 +99,41 @@ class MahasiswaAuthController extends Controller
 
     public function login(Request $request)
     {
-        if (!Auth::attempt($request->only('email', 'password'))) {
+        // if (!Auth::attempt($request->only('email', 'password'))) {
+        //     return response()->json([
+        //         'message' => 'Unauthorized'
+        //     ], 401);
+        // }
+        // $mahasiswa = Mahasiswa::where('email', $request->email)->first();
+
+        // $token = $mahasiswa->createToken('auth_token')->plainTextToken;
+
+        // return response()->json([
+        //     'message' => 'Login success',
+        //     'access_token' => $token,
+        //     'token_type' => 'Bearer'
+        // ]);
+        
+        $user = Mahasiswa::where('email', $request->email)->first();
+
+        if ($request->email != $user->email) {
             return response()->json([
-                'message' => 'Unauthorized'
-            ], 401);
+                '_status' => 422,
+                'message' => 'Mahasiswa tidak ditemukan',
+            ]);
         }
 
-        $mahasiswa = Mahasiswa::where('email', $request->email)->first();
+        if (!Hash::check($request->password, $user->password)) {
+            return response()->json([
+                '_status' => 422,
+                'message' => 'Password salah',
+            ]);
+        }
 
-        $token = $mahasiswa->createToken('auth_token')->plainTextToken;
+        $tokenResult = $user->createToken('authToken')->plainTextToken;
+        Auth::login($user);
 
-        return response()->json([
-            'message' => 'Login success',
-            'access_token' => $token,
-            'token_type' => 'Bearer'
-        ]);
+        return $tokenResult;
     }
 
     public function index()
