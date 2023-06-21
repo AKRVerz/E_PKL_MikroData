@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class AuthController extends Controller
+class MahasiswaAuthController extends Controller
 {
     public function register(Request $request)
     {
@@ -105,7 +105,7 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $mahasiswa = Mahasiswa::where('email', $request->email)->firstOrFail();
+        $mahasiswa = Mahasiswa::where('email', $request->email)->first();
 
         $token = $mahasiswa->createToken('auth_token')->plainTextToken;
 

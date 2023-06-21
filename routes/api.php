@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\MahasiswaAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,14 +17,14 @@ use Illuminate\Support\Facades\Route;
 
 
 // API data mahasiswa
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
-Route::middleware('auth:sanctum')->get('/mahasiswa', function (Request $request) {
+Route::post('/mahasiswa/register', [MahasiswaAuthController::class, 'register']);
+Route::post('/mahasiswa/login', [MahasiswaAuthController::class, 'login']);
+Route::middleware('auth:sanctum')->get('/mahasiswa/get-data', function (Request $request) {
     return $request->user();
 });
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('data', [AuthController::class, 'index']);
-    Route::post('/logout', [\App\Http\Controllers\Api\AuthController::class, 'logout']);
-    Route::post('/mahasiswa/update/{id}', [AuthController::class, 'update']);
-    Route::post('/mahasiswa/delete/{id}', [AuthController::class, 'delete']);
+    Route::get('/mahasiswa/all-data', [MahasiswaAuthController::class, 'index']);
+    Route::post('/mahasiswa/logout', [\App\Http\Controllers\Api\MahasiswaAuthController::class, 'logout']);
+    Route::post('/mahasiswa/update/{id}', [MahasiswaAuthController::class, 'update']);
+    Route::post('/mahasiswa/delete/{id}', [MahasiswaAuthController::class, 'delete']);
 });
