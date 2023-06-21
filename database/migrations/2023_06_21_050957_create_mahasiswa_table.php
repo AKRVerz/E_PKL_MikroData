@@ -21,8 +21,6 @@ class CreateMahasiswaTable extends Migration
             $table->string("password");
             $table->string("nama");
             $table->string("hp");
-            $table->string("dospem");
-            $table->string("dpl");
             $table->string("lokasi");
         });
     }

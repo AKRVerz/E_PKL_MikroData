@@ -16,10 +16,11 @@ class CreateKuesionerTable extends Migration
         Schema::create('kuesioner', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer("nama");
+            $table->integer("pkl_id") -> unsigned();
             $table->integer("no1");
             $table->integer("no2");
             $table->integer("no3");
+            $table->foreign("pkl_id") -> references('id')->on('pkl') ->onDelete('cascade');
         });
     }
 

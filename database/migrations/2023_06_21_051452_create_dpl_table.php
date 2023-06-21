@@ -21,6 +21,7 @@ class CreateDplTable extends Migration
             $table->string("password");
             $table->string("nama");
             $table->string("jabatan");
+            $table->string("instansi");
         });
     }
 
