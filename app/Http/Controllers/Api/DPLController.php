@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Dosbing;
 use App\Http\Controllers\Controller;
+use App\Models\DPL;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Sanctum\PersonalAccessToken;
 
-class DosbingAuthController extends Controller
+class DPLController extends Controller
 {
-    public function dosenRegister(Request $request)
+    public function dplRegister(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|max:255|unique:table_user_dosbing',
+            'email' => 'required|string|max:255|unique:table_user_dpl',
             'password' => 'required|string|min:8',
-            'nip' => 'required|string|min:5',
+            'jabatan' => 'required|string',
 
         ]);
 
@@ -26,30 +26,30 @@ class DosbingAuthController extends Controller
             return response()->json($validator->errors());
         }
 
-        $dosbing = Dosbing::create([
+        $dpl = DPL::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'nip' => $request->nip,
+            'jabatan' => $request->jabatan,
         ]);
 
-        $token = $dosbing->createToken('auth_token')->plainTextToken;
+        $token = $dpl->createToken('auth_token')->plainTextToken;
 
         return response()->json([
-            'data' => $dosbing,
+            'data' => $dpl,
             'access_token' => $token,
             'token_type' => 'Bearer'
         ]);
     }
 
-    public function dosenLogin(Request $request)
+    public function dplLogin(Request $request)
     {
-        $user = Dosbing::where('email', $request->email)->first();
+        $user = DPL::where('email', $request->email)->first();
 
         if ($request->email != $user->email) {
             return response()->json([
                 '_status' => 422,
-                'message' => 'Dosen Pembimbing tidak ditemukan',
+                'message' => 'Dosen Pembimbing Lapangan tidak ditemukan',
             ]);
         }
 
@@ -66,7 +66,7 @@ class DosbingAuthController extends Controller
         return $tokenResult;
     }
 
-    public function dosenUpdate($id, Request $request)
+    public function dplUpdate($id, Request $request)
     {
 
         // membuat validasi semua field wajib diisi
@@ -75,7 +75,7 @@ class DosbingAuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'password' => 'required|string|min:8',
-            'nip' => 'required|string|min:5',
+            'jabatan' => 'required|string',
 
         ]);
         if ($validator->fails()) {
@@ -83,27 +83,27 @@ class DosbingAuthController extends Controller
         }
 
         //melakukan update data berdasarkan id
-        $dosbing              = Dosbing::find($id);
-        $dosbing->name        = $request->name;
-        $dosbing->nip = $request->nip;
-        $dosbing->password    = Hash::make($request->password);
+        $dpl              = DPL::find($id);
+        $dpl->name        = $request->name;
+        $dpl->jabatan = $request->jabatan;
+        $dpl->password    = Hash::make($request->password);
 
         //jika berhasil maka simpan data dengan method $post->save()
-        if ($dosbing->save()) {
-            return response()->json(['Post Berhasil Disimpan', 'data' => $dosbing]);
+        if ($dpl->save()) {
+            return response()->json(['Post Berhasil Disimpan', 'data' => $dpl]);
         } else {
             return response()->json('Post Gagal Disimpan');
         }
     }
 
-    public function dosenDelete($id)
+    public function dplDelete($id)
     {
         //mencari data sesuai $id
         //$id diambil dari ujung url yang kita kirimkan dengan postman
-        $dosbing = Dosbing::findOrFail($id);
+        $dpl = DPL::findOrFail($id);
 
         // jika data berhasil didelete maka tampilkan pesan json 
-        if ($dosbing->delete()) {
+        if ($dpl->delete()) {
             return response([
                 'Berhasil Menghapus Data'
             ]);
@@ -117,7 +117,7 @@ class DosbingAuthController extends Controller
 
     public function dosenIndex()
     {
-        return Dosbing::all();
+        return DPL::all();
     }
 
     public function dosenLogout(Request $request)

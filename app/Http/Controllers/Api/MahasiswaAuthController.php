@@ -52,7 +52,6 @@ class MahasiswaAuthController extends Controller
         // password minimal 8 karakter
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|max:255|unique:table_user_mahasiswa',
             'password' => 'required|string|min:8',
             'nim' => 'required|string|min:5',
             'no_hp' => 'required|string|min:10',
