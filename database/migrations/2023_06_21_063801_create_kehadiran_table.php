@@ -16,11 +16,11 @@ class CreateKehadiranTable extends Migration
         Schema::create('kehadiran', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer("pkl_id") -> unsigned();
-            $table->string("lokasi");
+            $table->foreignId("pkl_id") -> unsigned();
+            $table->foreignId("lokasi_id") -> unsigned();
             $table->string("waktu");
             $table->string("nilai");
-            $table->foreign("pkl_id") -> references('id')->on('pkl') ->onDelete('cascade');
+            // $table->foreign("pkl_id") -> references('id')->on('pkl') ->onDelete('cascade');
         });
     }
 

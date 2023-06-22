@@ -17,7 +17,7 @@ class CreateDplTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string("nip");
-            $table->string("email");
+            $table->string("email")->unique();
             $table->string("password");
             $table->string("nama");
             $table->string("jabatan");

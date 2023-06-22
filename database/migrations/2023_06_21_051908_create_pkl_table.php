@@ -16,12 +16,13 @@ class CreatePklTable extends Migration
         Schema::create('pkl', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer("mahasiswa_id") -> unsigned();
-            $table->integer("dospem_id") -> unsigned();
-            $table->integer("dpl_id") -> unsigned();
-            $table->foreign("mahasiswa_id") -> references('id')->on('mahasiswa') ->onDelete('cascade');
-            $table->foreign("dospem_id") -> references('id')->on('dospem') ->onDelete('cascade');
-            $table->foreign("dpl_id") -> references('id')->on('dpl') ->onDelete('cascade');
+            $table->foreignId("mahasiswa_id") -> unsigned();
+            $table->foreignId("dospem_id") -> unsigned();
+            $table->foreignId("dpl_id") -> unsigned();
+            $table->foreignId("lokasi_id") -> unsigned();
+            // $table->foreign("mahasiswa_id") -> references('id')->on('mahasiswa') ->onDelete('cascade');
+            // $table->foreign("dospem_id") -> references('id')->on('dospem') ->onDelete('cascade');
+            // $table->foreign("dpl_id") -> references('id')->on('dpl') ->onDelete('cascade');
             
         });
     }

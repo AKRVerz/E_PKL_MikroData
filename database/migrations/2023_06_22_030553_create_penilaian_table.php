@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMahasiswaTable extends Migration
+class CreatePenilaianTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateMahasiswaTable extends Migration
      */
     public function up()
     {
-        Schema::create('mahasiswa', function (Blueprint $table) {
+        Schema::create('penilaian', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer("nim");
-            $table->string("email")->unique();
-            $table->string("password");
-            $table->string("nama");
-            $table->string("hp");
-            $table->foreignId("lokasi_id") -> unsigned();
+            $table->foreignId("pkl_id") -> unsigned();
+            $table->integer("nilai");
         });
     }
 
@@ -32,6 +28,6 @@ class CreateMahasiswaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mahasiswa');
+        Schema::dropIfExists('penilaian');
     }
 }

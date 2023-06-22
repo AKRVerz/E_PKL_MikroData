@@ -5,27 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class mahasiswa extends Model
+class dplModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'mahasiswa';
+    protected $table = 'dpl';
 
     protected $fillable = [
+        'nama',
+        'nip',
         'email',
         'password',
-        'nama',
-        'nim',
-        'hp',
         'lokasi_id',
     ];
 
-    protected $hidden = [
-        'password'
-    ];
-
-    public function pkl(): HasOne
+    public function pkl(): HasMany
     {
-        return $this->hasOne(pklModel::class);
+        return $this->hasMany(pklModel::class);
     }
+
 }

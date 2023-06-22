@@ -16,12 +16,12 @@ class CreateKegiatanTable extends Migration
         Schema::create('kegiatan', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer("pkl_id") -> unsigned();
+            $table->foreignId("pkl_id") -> unsigned();
             $table->string("capaian");
             $table->string("sub_capaian");
             $table->integer("durasi");
             $table->enum('status',[1,2,3]);
-            $table->foreign("pkl_id") -> references('id')->on('pkl') ->onDelete('cascade');
+            // $table->foreign("pkl_id") -> references('id')->on('pkl') ->onDelete('cascade');
         });
     }
 

@@ -16,7 +16,7 @@ class CreateJurnalTable extends Migration
         Schema::create('jurnal', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer("pkl_id") -> unsigned();
+            $table->foreignId("pkl_id") -> unsigned();
             $table->string("kegiatan");
             $table->string("alatbahan");
             $table->string("waktu");
@@ -25,7 +25,7 @@ class CreateJurnalTable extends Migration
             $table->string("prosedur");
             $table->string("hasil");
             $table->string("komentar");
-            $table->foreign("pkl_id") -> references('id')->on('pkl') ->onDelete('cascade');
+            // $table->foreign("pkl_id") -> references('id')->on('pkl') ->onDelete('cascade');
         });
     }
 

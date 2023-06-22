@@ -18,7 +18,7 @@ class CreateDospemTable extends Migration
             $table->timestamps();
             $table->string("nama");
             $table->string("nip");
-            $table->string("email");
+            $table->string("email")->unique();
             $table->string("password");
         });
     }
