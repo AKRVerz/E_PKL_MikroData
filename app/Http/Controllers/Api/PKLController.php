@@ -49,10 +49,6 @@ class PKLController extends Controller
 
     public function getDataPkl()
     {
-        $pkl = pkl::all();
-
-        return response()->json([
-            'data' => $pkl
-        ]);
+        return pkl::all();
     }
 }

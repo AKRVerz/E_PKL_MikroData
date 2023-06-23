@@ -44,4 +44,9 @@ class JurnalController extends Controller
             'data' => $jurnal
         ]);
     }
+
+    public function getJurnalData()
+    {
+        return jurnal::all();
+    }
 }
