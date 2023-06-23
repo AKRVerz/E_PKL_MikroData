@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\MahasiswaAuthController;
 use App\Http\Controllers\Api\DosbingAuthController;
 use App\Http\Controllers\Api\DPLController;
+use App\Http\Controllers\Api\PKLController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,14 +22,16 @@ use Illuminate\Support\Facades\Route;
 // API data mahasiswa
 Route::post('/mahasiswa/register', [MahasiswaAuthController::class, 'register']);
 Route::post('/mahasiswa/login', [MahasiswaAuthController::class, 'login']);
-Route::middleware('auth:sanctum')->get('/mahasiswa/get-data', function (Request $request) {
-    return $request->user();
-});
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/mahasiswa/get-data', function (Request $request) {
+        return $request->user();
+    });
     Route::get('/mahasiswa/all-data', [MahasiswaAuthController::class, 'index']);
     Route::post('/mahasiswa/logout', [MahasiswaAuthController::class, 'logout']);
     Route::post('/mahasiswa/update/{id}', [MahasiswaAuthController::class, 'update']);
     Route::post('/mahasiswa/delete/{id}', [MahasiswaAuthController::class, 'delete']);
+
+    Route::post('/pkl', [PKLController::class, 'postDataPkl']);
 });
 
 // API Data Dosen Pembimbing

@@ -21,41 +21,41 @@ class pkl extends Model
 
     public function mahasiswa(): BelongsTo
     {
-        return $this->belongsTo(Mahasiswa::class);
+        return $this->belongsTo(Mahasiswa::class, 'mahasiswa_id', 'id');
     }
 
     public function dospem(): BelongsTo
     {
-        return $this->belongsTo(Dosbing::class);
+        return $this->belongsTo(Dosbing::class, 'dospem_id', 'id');
     }
 
     public function dpl(): BelongsTo
     {
-        return $this->belongsTo(DPL::class);
+        return $this->belongsTo(DPL::class, 'dpl_id', 'id');
     }
 
-    public function jurnal(): HasOne
-    {
-        return $this->hasOne(jurnal::class);
-    }
+    // public function jurnal(): HasOne
+    // {
+    //     return $this->hasOne(jurnal::class);
+    // }
 
-    public function kegiatan(): HasOne
-    {
-        return $this->hasOne(kegiatan::class);
-    }
+    // public function kegiatan(): HasOne
+    // {
+    //     return $this->hasOne(kegiatan::class);
+    // }
 
-    public function kehadiran(): HasMany
-    {
-        return $this->hasMany(kehadiran::class);
-    }
+    // public function kehadiran(): HasMany
+    // {
+    //     return $this->hasMany(kehadiran::class);
+    // }
 
-    public function kuesioner(): HasMany
-    {
-        return $this->hasMany(kuesioner::class);
-    }
+    // public function kuesioner(): HasMany
+    // {
+    //     return $this->hasMany(kuesioner::class);
+    // }
 
-    public function penilaian(): HasOne
-    {
-        return $this->hasOne(penilaian::class);
-    }
+    // public function penilaian(): HasOne
+    // {
+    //     return $this->hasOne(penilaian::class);
+    // }
 }

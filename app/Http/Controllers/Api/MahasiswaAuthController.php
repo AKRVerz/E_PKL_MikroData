@@ -52,10 +52,7 @@ class MahasiswaAuthController extends Controller
         // password minimal 8 karakter
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'password' => 'required|string|min:8',
-            'nim' => 'required|string|min:5',
             'no_hp' => 'required|string|min:10',
-            'lokasi' => 'required|string|min:3',
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors());
@@ -64,10 +61,7 @@ class MahasiswaAuthController extends Controller
         //melakukan update data berdasarkan id
         $mahasiswa              = Mahasiswa::find($id);
         $mahasiswa->name        = $request->name;
-        $mahasiswa->nim = $request->nim;
         $mahasiswa->no_hp = $request->no_hp;
-        $mahasiswa->lokasi = $request->lokasi;
-        $mahasiswa->password    = Hash::make($request->password);
 
         //jika berhasil maka simpan data dengan method $post->save()
         if ($mahasiswa->save()) {
@@ -139,6 +133,8 @@ class MahasiswaAuthController extends Controller
     {
         return Mahasiswa::all();
     }
+
+
 
     public function logout(Request $request)
     {
