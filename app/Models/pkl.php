@@ -24,9 +24,9 @@ class pkl extends Model
         return $this->belongsTo(Mahasiswa::class, 'mahasiswa_id', 'id');
     }
 
-    public function dospem(): BelongsTo
+    public function dosbing(): BelongsTo
     {
-        return $this->belongsTo(Dosbing::class, 'dospem_id', 'id');
+        return $this->belongsTo(Dosbing::class, 'dosbing_id', 'id');
     }
 
     public function dpl(): BelongsTo
@@ -34,10 +34,10 @@ class pkl extends Model
         return $this->belongsTo(DPL::class, 'dpl_id', 'id');
     }
 
-    // public function jurnal(): HasOne
-    // {
-    //     return $this->hasOne(jurnal::class);
-    // }
+    public function jurnal(): HasOne
+    {
+        return $this->hasOne(jurnal::class);
+    }
 
     // public function kegiatan(): HasOne
     // {

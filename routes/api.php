@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\MahasiswaAuthController;
 use App\Http\Controllers\Api\DosbingAuthController;
 use App\Http\Controllers\Api\DPLController;
+use App\Http\Controllers\Api\JurnalController;
 use App\Http\Controllers\Api\PKLController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/mahasiswa/delete/{id}', [MahasiswaAuthController::class, 'delete']);
 
     Route::post('/pkl', [PKLController::class, 'postDataPkl']);
+    Route::get('/pkl/get-data', [PKLController::class, 'getDataPkl']);
+
+    Route::post('jurnal', [JurnalController::class, 'postJurnalData']);
 });
 
 // API Data Dosen Pembimbing

@@ -16,9 +16,9 @@ class PklResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'mahasiswa_id' => $this->mahasiswa_id,
-            'dospem_id' => $this->dospem_id,
-            'dpl_id' => $this->dpl_id,
+            'mahasiswa_id' => $this->whenLoaded('mahasiswa'),
+            'dosbing_id' => $this->whenLoaded('dosbing'),
+            'dpl_id' => $this->whenLoaded('dpl'),
         ];
     }
 }
