@@ -22,9 +22,9 @@ class PKLController extends Controller
     {
 
         $validated = Validator::make($request->all(), [
-            'mahasiswa_id' => 'required|exists:mahasiswa,id',
-            'dospem_id' => 'required|exists:dospem,id',
-            'dpl_id' => 'required|exists:dpl,id',
+            'mahasiswa_id' => 'required|exists:table_user_mahasiswa,id',
+            'dosbing_id' => 'required|exists:table_user_dosbing,id',
+            'dpl_id' => 'required|exists:table_user_dpl,id',
         ]);
 
         if ($validated->fails()) {
@@ -32,9 +32,9 @@ class PKLController extends Controller
         }
 
         $pkl = pkl::create([
-            'mahasiswa_id' => $request->mahasiswa()->id,
-            'dospem_id' => $request->dospem()->id,
-            'dpl_id' => $request->dpl_id->dpl()->id,
+            'mahasiswa_id' => $request->mahasiswa_id,
+            'dosbing_id' => $request->dosbing_id,
+            'dpl_id' => $request->dpl_id,
         ]);
 
         return response()->json([

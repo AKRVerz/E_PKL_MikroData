@@ -15,7 +15,7 @@ class pkl extends Model
 
     protected $fillable = [
         'mahasiswa_id',
-        'dospem_id',
+        'dosbing_id',
         'dpl_id',
     ];
 
