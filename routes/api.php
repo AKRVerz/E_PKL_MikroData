@@ -20,7 +20,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::post('/AuthUser', [UserController::class, 'index'])->name('User');
+Route::post('/user/register', [UserController::class, 'index'])->name('User');
+Route::post('/user/login', [UserController::class, 'login'])->name('User');
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/user/profile', function (Request $request) {
+        return $request->user();
+    });
+    Route::post('/user/logout', [UserController::class, 'logout']);
+    Route::post('/user/update/{id}', [UserController::class, 'update']);
+    Route::post('/user/delete/{id}', [UserController::class, 'delete']);
+    Route::get('/user/data/alluser', [UserController::class, 'data']);
+});
 
 
 // // API data mahasiswa
