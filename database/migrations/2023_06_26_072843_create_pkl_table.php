@@ -21,9 +21,7 @@ class CreatePklTable extends Migration
             $table->unsignedBigInteger('dpl_id');
 
 
-            $table->foreign('mahasiswa_id')->references('id')->on('users');
-            $table->foreign('dospem_id')->references('id')->on('users');
-            $table->foreign('dpl_id')->references('id')->on('users');
+            $table->foreign('mahasiswa_id', 'dospem_id', 'dpl_id')->references('id')->on('users');
         });
     }
 
