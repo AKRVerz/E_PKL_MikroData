@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class PKL extends Model
 {
@@ -29,5 +30,9 @@ class PKL extends Model
     public function dplRelationship(): BelongsTo
     {
         return $this->belongsTo(User::class, 'dpl_id', 'id');
+    }
+    public function jurnalRelathionshipToPkl(): HasOne
+    {
+        return $this->hasOne(jurnal::class);
     }
 }

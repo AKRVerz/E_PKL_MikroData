@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\API\JurnalController;
 use App\Http\Controllers\API\PKLController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
@@ -31,6 +31,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::post('/user/pkl', [PKLController::class, 'index']);
     Route::get('/user/pkl/data', [PKLController::class, 'data']);
+
+    Route::post('/user/jurnal', [JurnalController::class, 'index']);
+    Route::get('/user/jurnal/data', [JurnalController::class, 'data']);
 });
 
 
