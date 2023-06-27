@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\API\PKLController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\KegiatanController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::post('/user/pkl', [PKLController::class, 'index']);
     Route::get('/user/pkl/data', [PKLController::class, 'data']);
+
+    Route::get('/user/kegiatan', [KegiatanController::class, 'getData']);
+    Route::post('/user/kegiatan/tambah', [KegiatanController::class, 'createData']);
+    Route::post('/user/kegiatan/hapus/{id}', [KegiatanController::class, 'deleteData']);
+    Route::post('/user/kegiatan/update/{id}', [KegiatanController::class, 'updateData']);
 });
 
 

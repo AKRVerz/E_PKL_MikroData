@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Interfaces\PklRepositoryInterface;
 use App\Interfaces\UserRepositoryInterface;
+use App\Interfaces\KegiatanRepositoryInterface;
 use App\Repositories\PklRepository;
 use App\Repositories\UserRepository;
+use App\Repositories\KegiatanRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -19,6 +21,7 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(PklRepositoryInterface::class, PklRepository::class);
+        $this->app->bind(KegiatanRepositoryInterface::class, KegiatanRepository::class);
     }
 
     /**

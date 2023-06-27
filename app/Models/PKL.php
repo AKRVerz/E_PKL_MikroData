@@ -30,4 +30,8 @@ class PKL extends Model
     {
         return $this->belongsTo(User::class, 'dpl_id', 'id');
     }
+    public function kegiatan()
+    {
+        return $this->hasMany(Kegiatan::class);
+    }
 }
