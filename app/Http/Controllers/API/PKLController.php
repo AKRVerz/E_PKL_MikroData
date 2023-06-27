@@ -40,9 +40,10 @@ class PKLController extends Controller
 
         $data = PKL::get();
 
-        for ($i=0; $i < count($data); $i++) { 
+        for ($i = 0; $i < count($data); $i++) {
             $data[$i]["mahasiswa"] = User::where('id', $data[$i]->mahasiswa_id)->first();
             $data[$i]["dospem"] = User::where('id', $data[$i]->dospem_id)->first();
+            $data[$i]["dpl"] = User::where('id', $data[$i]->dpl_id)->first();
         }
 
         return response()->json([
