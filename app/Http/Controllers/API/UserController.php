@@ -10,7 +10,6 @@ use App\Interfaces\UserRepositoryInterface;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\PersonalAccessToken;
 
 class UserController extends Controller
@@ -51,7 +50,7 @@ class UserController extends Controller
     public function login(LoginRequest $request)
     {
         if (!Auth::attempt($request->only('email', 'password'))) {
-            return response()->json((['_status' => 422,]));
+            return response(422)->json((['_status' => 422,]));
         }
 
         $user = Auth::user();
