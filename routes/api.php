@@ -1,9 +1,7 @@
 <?php
 
-use App\Http\Controllers\Api\MahasiswaAuthController;
-use App\Http\Controllers\Api\DosbingAuthController;
-use App\Http\Controllers\Api\DPLController;
-use App\Http\Controllers\Api\PKLController;
+
+use App\Http\Controllers\API\PKLController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +28,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/user/update/{id}', [UserController::class, 'update']);
     Route::post('/user/delete/{id}', [UserController::class, 'delete']);
     Route::get('/user/data/alluser', [UserController::class, 'data']);
+
+    Route::post('/user/pkl', [PKLController::class, 'index']);
+    Route::get('/user/pkl/data', [PKLController::class, 'data']);
 });
 
 
