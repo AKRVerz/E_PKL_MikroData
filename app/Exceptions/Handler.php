@@ -31,7 +31,8 @@ class Handler extends ExceptionHandler
         $this->renderable(function (AuthenticationException $e, $request) {
             if ($request->is('api/*')) {
                 return response()->json([
-                    'data' => false,
+                    'status_code' => 401,
+                    'success' => false,
                     'message' => 'Pengguna harus login'
                 ], 401);
             }
