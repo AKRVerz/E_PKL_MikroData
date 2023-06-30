@@ -44,6 +44,11 @@ class KegiatanController extends Controller
 
         //melakukan update data berdasarkan id
         $kegiatan              = Kegiatan::find($id);
+        $kegiatan->pkl_id      = $request->pkl_id;
+        $kegiatan->capaian     = $request->capaian;
+        $kegiatan->sub_capaian = $request->sub_capaian;
+        $kegiatan->jam         = $request->jam;
+        $kegiatan->status      = $request->status;
 
         //jika berhasil maka simpan data dengan method $post->save()
         if ($kegiatan->save()) {

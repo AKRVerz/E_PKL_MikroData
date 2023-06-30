@@ -11,11 +11,11 @@ class KegiatanRequest extends FormRequest
     public function rules()
     {
         return [
-            'capaian' => 'required|string',
-            'sub_capaian' => 'required|string',
+            'capaian' => 'required|string|max:255',
+            'sub_capaian' => 'required|string|max:255',
             'jam' => 'required|integer',
             'status' => 'required',
-            'pkl_id' => 'required|integer',
+            'pkl_id' => 'required', 
         ];
     }
 

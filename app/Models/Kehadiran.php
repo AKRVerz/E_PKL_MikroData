@@ -6,22 +6,24 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Kegiatan extends Model
+class Kehadiran extends Model
 {
     use HasFactory;
 
-    protected $table = 'kegiatan';
+    protected $table = 'kehadiran';
 
     protected $fillable = [
-        'capaian',
-        'sub_capaian',
-        'jam',
-        'status',
-        'pkl_id'
+        'pkl_id',
+        'tanggalwaktu',
+        // 'tanggal',
+        // 'waktu',
+        'kehadiran',
+        'keterangan',
+        'status'
     ];
 
     public function pkl(): BelongsTo
     {
-        return $this->belongsTo(PKL::class, 'pkl_id', 'id');
+        return $this->belongsTo(PKL::class, 'pkl_id', 'pkl');
     }
 }
