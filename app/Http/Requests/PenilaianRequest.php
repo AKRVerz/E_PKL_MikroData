@@ -6,19 +6,22 @@ use Illuminate\Contracts\Validation\Validator as ExceptionValidator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class KehadiranRequest extends FormRequest
+class PenilaianRequest extends FormRequest
 {
-
     public function rules()
     {
         return [
-            'pkl_id'=>'required',
-            'tanggalwaktu'=>'required|date_format:"Y-m-d H:i:s',
-            'kehadiran'=>'required',
-            'keterangan'=>'required|string|max:255',
-            'status'=>'required',
+        'pkl_id' => 'required',
+        'tgl_mulai' => 'required|date_format:"Y-m-d',
+        'tgl_selesai' => 'required|date_format:"Y-m-d',
+        'rerata' => 'required|integer',
+        'pengetahuan' => 'required|integer',
+        'pelaksanaan' => 'required|integer',
+        'kerjasama' => 'required|integer',
+        'kreativitas' => 'required|integer',
+        'kedisiplinan' => 'required|integer',
+        'sikap' => 'required|integer',
         ];
-
     }
 
     protected function failedValidation(ExceptionValidator $validator)
@@ -28,4 +31,5 @@ class KehadiranRequest extends FormRequest
             'status' => true,
         ], 422));
     }
+
 }

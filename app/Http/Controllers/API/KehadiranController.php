@@ -55,9 +55,9 @@ class KehadiranController extends Controller
     public function deleteKehadiran($id)
     {
 
-        $kegiatan = Kehadiran::findOrFail($id);
+        $kehadiran= Kehadiran::findOrFail($id);
 
-        if ($kegiatan->delete()) {
+        if ($kehadiran->delete()) {
             return response([
                 'Berhasil Menghapus Data'
             ]);

@@ -5,6 +5,7 @@ use App\Http\Controllers\API\PKLController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\KegiatanController;
 use App\Http\Controllers\API\KehadiranController;
+use App\Http\Controllers\API\PenilaianController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -43,6 +44,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/user/kehadiran/tambah', [KehadiranController::class, 'indexKehadiran']);
     Route::post('/user/kehadiran/update/{id}', [KehadiranController::class, 'updateKehadiran']);
     Route::post('/user/kehadiran/delete/{id}', [KehadiranController::class, 'deleteKehadiran']);
+
+    Route::get('/user/penilaian', [PenilaianController::class, 'getPenilaian']);
+    Route::post('/user/penilaian/tambah', [PenilaianController::class, 'indexPenilaian']);
+    Route::post('/user/penilaian/update/{id}', [PenilaianController::class, 'updatePenilaian']);
+    Route::post('/user/penilaian/delete/{id}', [PenilaianController::class, 'deletePenilaian']);
 });
 
 

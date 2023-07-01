@@ -37,4 +37,7 @@ class PKL extends Model
     public function kehadiran(){
         return $this->hasMany(Kehadiran::class);
     }
+    public function penilaian(){
+        return $this->hasMany(Penilaian::class);
+    }
 }
