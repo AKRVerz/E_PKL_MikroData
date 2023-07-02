@@ -40,4 +40,7 @@ class PKL extends Model
     public function penilaian(){
         return $this->hasMany(Penilaian::class);
     }
+    public function kuesioner(){
+        return $this->hasMany(Kuesioner::class);
+    }
 }

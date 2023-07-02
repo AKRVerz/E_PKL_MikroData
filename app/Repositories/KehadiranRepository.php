@@ -11,8 +11,6 @@ class KehadiranRepository implements KehadiranRepositoryInterface{
         return Kehadiran::create([
             'pkl_id'=>$input['pkl_id'],
             'tanggalwaktu'=>$input['tanggalwaktu'],
-            // 'tanggal'=>$input['tanggal'],
-            // 'waktu'=>$input['waktu'],
             'kehadiran'=>$input['kehadiran'],
             'keterangan'=>$input['keterangan'],
             'status'=>$input['status'],
