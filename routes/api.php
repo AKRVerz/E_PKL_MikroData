@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\API\JurnalController;
 use App\Http\Controllers\API\PKLController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\KegiatanController;
@@ -36,6 +36,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/user/pkl', [PKLController::class, 'index']);
     Route::get('/user/pkl/data', [PKLController::class, 'data']);
 
+
     Route::get('/user/kegiatan', [KegiatanController::class, 'getData']);
     Route::post('/user/kegiatan/tambah', [KegiatanController::class, 'createData']);
     Route::post('/user/kegiatan/hapus/{id}', [KegiatanController::class, 'deleteData']);
@@ -55,6 +56,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/user/kuesioner/tambah', [KuesionerController::class, 'indexKuesioner']);
     Route::post('/user/kuesioner/update/{id}', [KuesionerController::class, 'updateKuesioner']);
     Route::post('/user/kuesioner/delete/{id}', [KuesionerController::class, 'deleteKuesioner']);
+
+    Route::post('/user/jurnal', [JurnalController::class, 'index']);
+    Route::get('/user/jurnal/data', [JurnalController::class, 'data']);
+
 });
 
 
