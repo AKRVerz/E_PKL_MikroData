@@ -3,6 +3,10 @@
 use App\Http\Controllers\API\JurnalController;
 use App\Http\Controllers\API\PKLController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\KegiatanController;
+use App\Http\Controllers\API\KehadiranController;
+use App\Http\Controllers\API\KuesionerController;
+use App\Http\Controllers\API\PenilaianController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +35,27 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::post('/user/pkl', [PKLController::class, 'index']);
     Route::get('/user/pkl/data', [PKLController::class, 'data']);
+
+
+    Route::get('/user/kegiatan', [KegiatanController::class, 'getData']);
+    Route::post('/user/kegiatan/tambah', [KegiatanController::class, 'createData']);
+    Route::post('/user/kegiatan/hapus/{id}', [KegiatanController::class, 'deleteData']);
+    Route::post('/user/kegiatan/update/{id}', [KegiatanController::class, 'updateData']);
+
+    Route::get('/user/kehadiran', [KehadiranController::class, 'getKehadiran']);
+    Route::post('/user/kehadiran/tambah', [KehadiranController::class, 'indexKehadiran']);
+    Route::post('/user/kehadiran/update/{id}', [KehadiranController::class, 'updateKehadiran']);
+    Route::post('/user/kehadiran/delete/{id}', [KehadiranController::class, 'deleteKehadiran']);
+
+    Route::get('/user/penilaian', [PenilaianController::class, 'getPenilaian']);
+    Route::post('/user/penilaian/tambah', [PenilaianController::class, 'indexPenilaian']);
+    Route::post('/user/penilaian/update/{id}', [PenilaianController::class, 'updatePenilaian']);
+    Route::post('/user/penilaian/delete/{id}', [PenilaianController::class, 'deletePenilaian']);
+
+    Route::get('/user/kuesioner', [KuesionerController::class, 'getKuesioner']);
+    Route::post('/user/kuesioner/tambah', [KuesionerController::class, 'indexKuesioner']);
+    Route::post('/user/kuesioner/update/{id}', [KuesionerController::class, 'updateKuesioner']);
+    Route::post('/user/kuesioner/delete/{id}', [KuesionerController::class, 'deleteKuesioner']);
 
     Route::post('/user/jurnal', [JurnalController::class, 'index']);
     Route::get('/user/jurnal/data', [JurnalController::class, 'data']);

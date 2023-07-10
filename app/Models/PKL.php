@@ -31,6 +31,23 @@ class PKL extends Model
     {
         return $this->belongsTo(User::class, 'dpl_id', 'id');
     }
+    public function kegiatan()
+    {
+        return $this->hasMany(Kegiatan::class);
+    }
+    public function kehadiran()
+    {
+        return $this->hasMany(Kehadiran::class);
+    }
+    public function penilaian()
+    {
+        return $this->hasMany(Penilaian::class);
+    }
+    public function kuesioner()
+    {
+        return $this->hasMany(Kuesioner::class);
+    }
+
     public function jurnalRelathionshipToPkl(): HasOne
     {
         return $this->hasOne(jurnal::class);
