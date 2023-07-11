@@ -32,11 +32,11 @@ class PKLController extends Controller
     {
         $userToken = $request->user();
 
-        if ($userToken->roles_id != 1) {
-            return response()->json([
-                'body' => "Hanya mahasiswa yang dapat mengakses fitur ini"
-            ], 401);
-        }
+        // if ($userToken->roles_id != 1) {
+        //     return response()->json([
+        //         'body' => "Hanya mahasiswa yang dapat mengakses fitur ini"
+        //     ], 401);
+        // }
 
         $data = PKL::get();
 

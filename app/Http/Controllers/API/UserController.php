@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Laravel\Sanctum\PersonalAccessToken;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -83,6 +84,9 @@ class UserController extends Controller
 
         //melakukan update data berdasarkan id
         $user              = User::find($id);
+        $user->nip  =$request->nip;
+        $request->nim =$request->nim;
+        $request->password = Hash::make($request->password);
         $user->name        = $request->name;
         $user->no_hp = $request->no_hp;
 
