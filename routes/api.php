@@ -35,6 +35,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::post('/user/pkl', [PKLController::class, 'index']);
     Route::get('/user/pkl/data', [PKLController::class, 'data']);
+    Route::post('/user/pkl/update/{id}', [PKLController::class, 'update']);
+    Route::post('/user/pkl/delete/{id}', [PKLController::class, 'delete']);
+
 
 
     Route::get('/user/kegiatan', [KegiatanController::class, 'getData']);

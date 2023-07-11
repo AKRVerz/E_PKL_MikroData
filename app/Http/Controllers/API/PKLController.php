@@ -7,7 +7,6 @@ use App\Http\Requests\PKLRequest;
 use App\Interfaces\PklRepositoryInterface;
 use App\Models\PKL;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class PKLController extends Controller
 {
@@ -28,7 +27,7 @@ class PKLController extends Controller
         ]);
     }
 
-    public function data(Request $request)
+    public function data()
     {
         // $userToken = $request->user();
 
@@ -55,8 +54,9 @@ class PKLController extends Controller
     {
         $request->validated();
 
+
         $pkl = PKL::find($id);
-        $pkl->mahamahasiswa_id = $request->mahasiswa_id;
+        $pkl->mahasiswa_id = $request->mahasiswa_id;
         $pkl->dospem_id = $request->dospem_id;
         $pkl->dpl_id = $request->dpl_id;
 
@@ -70,7 +70,7 @@ class PKLController extends Controller
     public function delete($id)
     {
 
-        $user = User::findOrFail($id);
+        $user = PKL::findOrFail($id);
 
         if ($user->delete()) {
             return response([
