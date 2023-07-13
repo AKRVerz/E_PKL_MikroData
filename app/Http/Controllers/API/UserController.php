@@ -11,6 +11,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Laravel\Sanctum\PersonalAccessToken;
+use Illuminate\Support\Facades\Hash;
+
 
 class UserController extends Controller
 {
@@ -85,6 +87,12 @@ class UserController extends Controller
         $user              = User::find($id);
         $user->name        = $request->name;
         $user->no_hp = $request->no_hp;
+        $user->password = Hash::make($request->password);
+        $user->nim = $request->nim;
+        $user->nip = $request->nip;
+        $user->lokasi = $request->lokasi;
+        $user->jabatan = $request->jabatan;
+
 
         //jika berhasil maka simpan data dengan method $post->save()
         if ($user->save()) {
