@@ -39,7 +39,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(KuesionerRepositoryInterface::class, KuesionerRepository::class);
 
         $this->app->bind(JurnalRepositoryInterface::class, JurnalRepository::class);
-
     }
 
     /**

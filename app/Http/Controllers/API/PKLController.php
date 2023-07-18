@@ -7,7 +7,6 @@ use App\Http\Requests\PKLRequest;
 use App\Interfaces\PklRepositoryInterface;
 use App\Models\PKL;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class PKLController extends Controller
 {
@@ -28,15 +27,15 @@ class PKLController extends Controller
         ]);
     }
 
-    public function data(Request $request)
+    public function data()
     {
-        $userToken = $request->user();
+        // $userToken = $request->user();
 
-        if ($userToken->roles_id != 1) {
-            return response()->json([
-                'body' => "Hanya mahasiswa yang dapat mengakses fitur ini"
-            ], 401);
-        }
+        // if ($userToken->roles_id != 1) {
+        //     return response()->json([
+        //         'body' => "Hanya mahasiswa yang dapat mengakses fitur ini"
+        //     ], 401);
+        // }
 
         $data = PKL::get();
 
@@ -49,5 +48,39 @@ class PKLController extends Controller
         return response()->json([
             'body' => $data
         ]);
+    }
+
+    public function update($id, PKLRequest $request)
+    {
+        $request->validated();
+
+
+        $pkl = PKL::find($id);
+        $pkl->mahasiswa_id = $request->mahasiswa_id;
+        $pkl->dospem_id = $request->dospem_id;
+        $pkl->dpl_id = $request->dpl_id;
+
+        if ($pkl->save()) {
+            return response()->json(['Data Berhasil Disimpan', 'data' => $pkl]);
+        } else {
+            return response()->json('Data Gagal Disimpan');
+        }
+    }
+
+    public function delete($id)
+    {
+
+        $user = PKL::findOrFail($id);
+
+        if ($user->delete()) {
+            return response([
+                'Berhasil Menghapus Data'
+            ]);
+        } else {
+            //response jika gagal menghapus
+            return response([
+                'Tidak Berhasil Menghapus Data'
+            ]);
+        }
     }
 }
