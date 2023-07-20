@@ -20,6 +20,13 @@ class KegiatanController extends Controller
 
     public function createData(KegiatanRequest $request)
     {
+        $userToken = $request->user();
+
+        if ($userToken->roles_id != 1) {
+            return response()->json([
+                'body' => "Hanya mahasiswa yang dapat mengakses fitur ini"
+            ], 401);
+        }
         $request->validated();
 
         return response()->json([
@@ -58,9 +65,15 @@ class KegiatanController extends Controller
         }
     }
 
-    public function deleteData($id)
+    public function deleteData($id, Request $request)
     {
+        $userToken = $request->user();
 
+        if ($userToken->roles_id != 1) {
+            return response()->json([
+                'body' => "Hanya mahasiswa yang dapat mengakses fitur ini"
+            ], 401);
+        }
         $kegiatan = Kegiatan::findOrFail($id);
 
         if ($kegiatan->delete()) {

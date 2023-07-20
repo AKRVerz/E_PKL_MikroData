@@ -73,8 +73,15 @@ class JurnalController extends Controller
         }
     }
 
-    public function delete($id)
+    public function delete($id, Request $request)
     {
+        $userToken = $request->user();
+
+        if ($userToken->roles_id != 1) {
+            return response()->json([
+                'body' => "Hanya mahasiswa yang dapat mengakses fitur ini"
+            ], 401);
+        }
 
         $jurnal = Jurnal::findOrFail($id);
 
