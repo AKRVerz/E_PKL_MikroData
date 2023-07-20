@@ -12,11 +12,21 @@ class KehadiranController extends Controller
 {
     private KehadiranRepositoryInterface $KehadiranRepository;
 
-    public function __construct(KehadiranRepositoryInterface $KehadiranRepository){
+    public function __construct(KehadiranRepositoryInterface $KehadiranRepository)
+    {
         $this->KehadiranRepository = $KehadiranRepository;
     }
 
-    public function indexKehadiran(KehadiranRequest $request){
+    public function indexKehadiran(KehadiranRequest $request)
+    {
+        $userToken = $request->user();
+
+        if ($userToken->roles_id != 1) {
+            return response()->json([
+                'body' => "Hanya mahasiswa yang dapat mengakses fitur ini"
+            ], 401);
+        }
+
         $request->validated();
 
         return response()->json([
@@ -24,7 +34,8 @@ class KehadiranController extends Controller
         ]);
     }
 
-    public function getKehadiran(){
+    public function getKehadiran()
+    {
         $data = Kehadiran::get();
 
         return response()->json([
@@ -52,10 +63,17 @@ class KehadiranController extends Controller
         }
     }
 
-    public function deleteKehadiran($id)
+    public function deleteKehadiran($id, Request $request)
     {
+        $userToken = $request->user();
 
-        $kehadiran= Kehadiran::findOrFail($id);
+        if ($userToken->roles_id != 1) {
+            return response()->json([
+                'body' => "Hanya mahasiswa yang dapat mengakses fitur ini"
+            ], 401);
+        }
+
+        $kehadiran = Kehadiran::findOrFail($id);
 
         if ($kehadiran->delete()) {
             return response([
@@ -68,5 +86,4 @@ class KehadiranController extends Controller
             ]);
         }
     }
-
 }
