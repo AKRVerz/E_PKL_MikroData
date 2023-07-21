@@ -62,8 +62,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::post('/user/jurnal', [JurnalController::class, 'index']);
     Route::get('/user/jurnal/data', [JurnalController::class, 'data']);
-    Route::get('/user/jurnal/update/{id}', [JurnalController::class, 'update']);
-    Route::get('/user/jurnal/delete/{id}', [JurnalController::class, 'delete']);
+    Route::post('/user/jurnal/update/{id}', [JurnalController::class, 'update']);
+    Route::post('/user/jurnal/delete/{id}', [JurnalController::class, 'delete']);
 });
 
 
